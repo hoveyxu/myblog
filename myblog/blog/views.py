@@ -96,3 +96,12 @@ class TagsView(View):
 
     def post(self, request):
         pass
+
+# 404页面
+class FourZeroFourView(View):
+
+    def get(self, request):
+        return render(request, '404.html')
+
+    def post(self, request):
+        pass

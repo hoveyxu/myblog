@@ -30,6 +30,7 @@ urlpatterns = [
     re_path('guide', views.GuideView.as_view()),
     re_path('tag', views.TagView.as_view()),
     re_path('tags', views.TagsView.as_view()),
+    re_path('404', views.FourZeroFourView.as_view()),
     path('admin/', admin.site.urls),
 
 ]

@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views import View
+from django.utils import timezone
 from django.http import HttpResponse
+
 
 # 用于测试的代码
 # def index(request):
@@ -8,12 +10,22 @@ from django.http import HttpResponse
 
 # index页面
 class IndexView(View):
-
     def get(self, request):
-        return render(request, 'index.html')
+        # 返回时间
+        timeoftoday = timezone.now().date()
+        # 返回name
+
+        context = {"zuoyouming": "梦想不大，道路很长，开始了就别停下。",
+                   "timeoftoday": timeoftoday,
+
+                   }
+
+        return render(request, 'index.html', context)
 
     def post(self, request):
         pass
+
+
 # index2页面
 class IndexTwoView(View):
 
@@ -22,6 +34,8 @@ class IndexTwoView(View):
 
     def post(self, request):
         pass
+
+
 # about页面
 class AboutView(View):
 
@@ -30,6 +44,7 @@ class AboutView(View):
 
     def post(self, request):
         pass
+
 
 # author页面
 class AuthorView(View):
@@ -40,6 +55,7 @@ class AuthorView(View):
     def post(self, request):
         pass
 
+
 # authors页面
 class AuthorsView(View):
 
@@ -48,6 +64,7 @@ class AuthorsView(View):
 
     def post(self, request):
         pass
+
 
 # blog-detail页面
 class BlogDetailView(View):
@@ -88,6 +105,7 @@ class TagView(View):
     def post(self, request):
         pass
 
+
 # tags页面
 class TagsView(View):
 
@@ -96,6 +114,7 @@ class TagsView(View):
 
     def post(self, request):
         pass
+
 
 # 404页面
 class FourZeroFourView(View):

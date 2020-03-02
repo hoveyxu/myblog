@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+
 # import jinja2
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -37,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
+    'users.apps.UsersConfig',
+    'mdeditor',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +147,31 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # # 指定静态文件的存放目录
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# 指定本项目用户模型类
+AUTH_USER_MODEL = 'users.User'
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
+        'HOST': '127.0.0.1',  # 数据库主机
+        'PORT': 3306,  # 数据库端口
+        'USER': 'root',  # 数据库用户名
+        'PASSWORD': 'mysql',  # 数据库用户密码
+        'NAME': 'blog'  # 数据库名字
+    },
+    # 'slave': {
+    #     'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
+    #     'HOST': '127.0.0.1',  # 数据库主机
+    #     'PORT': 8306,  # 数据库端口
+    #     'USER': 'root',  # 数据库用户名
+    #     'PASSWORD': 'mysql',  # 数据库用户密码
+    #     'NAME': 'meiduo_tbd39'  # 数据库名字
+    # },
+}
+
+# uploads必须存在，且在项目目录下
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+
+# 你上传的文件和图片会默认存在/uploads/editor下
+MEDIA_URL = '/media/'

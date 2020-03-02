@@ -2,14 +2,36 @@ from django.shortcuts import render
 from django.views import View
 from django.utils import timezone
 from django.http import HttpResponse
+from blog.models import Article
+import markdown
 
-
-# 用于测试的代码
-# def index(request):
-#     return HttpResponse("hahaha")
 
 # index页面
 class IndexView(View):
+    def get(self, request):
+        # 返回时间
+        timeoftoday = timezone.now().date()
+        # 返回name
+        # 获取文章
+        article_list = Article.objects.all()
+        articletitle = []
+        for a in article_list:
+            articletitle.append(a.title)
+
+        context = {"zuoyouming": "梦想不大，道路很长，开始了就别停下。",
+                   "timeoftoday": timeoftoday,
+                   "articletitle": articletitle,
+                   }
+
+        return render(request, 'index.html', context)
+
+    def post(self, request):
+        pass
+
+
+# about页面
+class AboutView(View):
+
     def get(self, request):
         # 返回时间
         timeoftoday = timezone.now().date()
@@ -20,27 +42,7 @@ class IndexView(View):
 
                    }
 
-        return render(request, 'index.html', context)
-
-    def post(self, request):
-        pass
-
-
-# index2页面
-class IndexTwoView(View):
-
-    def get(self, request):
-        return render(request, 'index2.html')
-
-    def post(self, request):
-        pass
-
-
-# about页面
-class AboutView(View):
-
-    def get(self, request):
-        return render(request, 'about.html')
+        return render(request, 'about.html', context)
 
     def post(self, request):
         pass

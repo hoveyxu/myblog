@@ -2,8 +2,11 @@ from django.shortcuts import render
 from django.views import View
 from django.utils import timezone
 from django.http import HttpResponse
+
+
 from blog.models import Article
 import markdown
+import json
 
 
 # index页面
@@ -12,15 +15,28 @@ class IndexView(View):
         # 返回时间
         timeoftoday = timezone.now().date()
         # 返回name
+        # # 获取文章
+        # article_list = Article.objects.all()
+        # article = []
+        # for a in article_list:
+        #     article.append(a.title)
+
         # 获取文章
         article_list = Article.objects.all()
-        articletitle = []
+        articles = []
+
         for a in article_list:
-            articletitle.append(a.title)
+            articles.append({
+                'articletitle': a.title,
+                'articlebread': a.bread,
+                'articlecontent': a.content,
+                'articletime': a.pub_date,
+                'articleid': a.id,
+            })
 
         context = {"zuoyouming": "梦想不大，道路很长，开始了就别停下。",
                    "timeoftoday": timeoftoday,
-                   "articletitle": articletitle,
+                   "articles": articles,
                    }
 
         return render(request, 'index.html', context)
@@ -126,3 +142,6 @@ class FourZeroFourView(View):
 
     def post(self, request):
         pass
+
+
+

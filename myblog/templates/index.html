@@ -122,35 +122,22 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="row">
-                      {% for a in articletitle %}
+                      {% for a in articles %}
+
                      <div class="col-md-10 mx-auto nagative-margin" data-aos="fade">
                         <div class="themeix-single-post">
                            <div class="left-post-number float-left">
-                              <div class="post-number"><span>01</span></div>
-                              <div class="post-author">
-                                 <a href="author.html"><img src="../../static/images/author-02.png" alt="author" /></a>
-                                 <div class="author-title"><a href="author.html">Rene Tromp</a><span>Admin & Ceo</span></div>
-                                 <div class="btn-share share-option">
-                                    <div class="a-icon"><i class="fa fa-share-alt" aria-hidden="true"></i></div>
-                                    <div class="share-icon">
-                                       <ul class="list-inline">
-                                          <li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                          <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                          <li class="list-inline-item"><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                       </ul>
-                                    </div>
-                                 </div>
-                              </div>
+                              <div class="post-number"><span>{{ a.articleid }}</span></div>
                            </div>
                            <div class="right-blog-details ">
                               <div class="blog-meta">
 
-                                 <p>{{ a.title }}</p>
-
-                                 <p>2 min read</p>
+                                 <p>{{ a.articletitle }}</p>
+                                  <p>{{ a.articletime }}</p>
+                                 <p>阅读：{{ a.articlebread }}</p>
                               </div>
                               <div class="blog-title pb-3 pt-1">
-                                 <h2 class="heading-2"><a href="blog-details.html">British columbias business temptation: an opaque array of</a></h2>
+                                 <h2 class="heading-2"><a href="blog-details.html">{{ a.articlecontent }}</a></h2>
                               </div>
                               <div class="blog-thumb">
                                  <a href="blog-details.html"><img src="../../static/images/post-01.jpg" alt="post" /></a>
@@ -159,6 +146,7 @@
                            </div>
                         </div>
                      </div>
+
                       {% endfor %}
 
                   </div>
